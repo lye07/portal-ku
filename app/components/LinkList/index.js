@@ -6,19 +6,19 @@
 
 import React from 'react';
 
-
+import Link from '../Link';
 import styles from './styles.css';
 
 function LinkList({ links }) {
-  const linkItem = links.map(i => (
-    <div key={i.id}>
-      {i.topicName}
-      <p>{ i.description }</p>
-    </div>
+  const linkNodes = links.map(i => (
+    <Link
+      key={i.id}
+      link={i}
+    />
   ))
   return (
     <div className={styles.linkList}>
-      { linkItem }
+      { linkNodes }
     </div>
   );
 }
@@ -28,6 +28,7 @@ LinkList.propTypes = {
     description: React.PropTypes.string.isRequired,
     url: React.PropTypes.string.isRequired,
     id: React.PropTypes.string.isRequired,
+    topicName: React.PropTypes.string.isRequired,
   })),
 };
 

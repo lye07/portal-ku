@@ -21,7 +21,8 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import useScroll from 'react-router-scroll';
 import LanguageProvider from 'containers/LanguageProvider';
 import configureStore from './store';
-
+import { LocaleProvider } from 'antd';
+import enUS from 'antd/lib/locale-provider/en_US';
 // Import i18n messages
 import { translationMessages } from './i18n';
 
@@ -55,6 +56,7 @@ const rootRoute = {
 const render = (translatedMessages) => {
   ReactDOM.render(
     <Provider store={store}>
+      <LocaleProvider locale={enUS}>
       <LanguageProvider messages={translatedMessages}>
         <Router
           history={history}
@@ -66,6 +68,7 @@ const render = (translatedMessages) => {
           }
         />
       </LanguageProvider>
+      </LocaleProvider>
     </Provider>,
     document.getElementById('app')
   );

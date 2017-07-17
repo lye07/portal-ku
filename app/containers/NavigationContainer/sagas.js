@@ -1,5 +1,5 @@
 
-import { REQUEST_TOPICS } from './constants';
+import { REQUEST_TOPICS, SELECT_TOPIC } from './constants';
 import { takeLatest } from 'redux-saga';
 import { take, call, put, select } from 'redux-saga/effects';
 import { requestTopicsSucceeded, requestTopicsFailed } from './actions';
@@ -23,6 +23,14 @@ function* fetchTopics() {
 
 // control flow functions
 
+export* selectTopics(){
+  console.log(action.topic);
+}
+
+export function* selectTopicSaga(){
+  yield* takeLatest(SELECT_TOPIC, pushTopic);
+}
+
 export function* fetchTopicsSaga() {
   yield* takeLatest(REQUEST_TOPICS, fetchTopics);
 }
@@ -30,4 +38,5 @@ export function* fetchTopicsSaga() {
 // All sagas to be loaded
 export default [
   fetchTopicsSaga,
+  selectTopicSaga,
 ];
